@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unity | Важные скрипты для чемпионата</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="logo.png" class="logo">
+    <hr>
+
+    <h1>Перемещение игрока по клику мыши</h1>
+    <xmp class="code">if (Input.GetMouseButtonDown(0))
+{
+    RaycastHit hit;
+    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+    {
+        agent.destination = hit.point;
+    }
+}
+    </xmp>
+    <hr>
+
+    <h1>Создание данных JSON</h1>
+    <xmp class="code">[System.Serializable]
+public class Player
+{
+    public string[] items;
+    public int health = 100;
+}
+</xmp>
+    <xmp class="code">public Player player = new Player();</xmp>
+    <hr>
+
+    <h1>Сохранение данных JSON</h1>
+    <xmp class="code">public void SaveToJson()
+{
+    string data = JsonUtility.ToJson(player);
+    string file_path = Application.persistentDataPath + "/PlayerData.json";
+    Debug.Log(file_path);
+    System.IO.File.WriteAllText(file_path, data);
+    Debug.Log("Data saved!");
+}</xmp>
+    <hr>
+
+<h1>Получение данных JSON</h1>
+    <xmp class="code">public void LoadFromJson()
+{
+    string file_path = Application.persistentDataPath + "/PlayerData.json";
+    string data = System.IO.File.ReadAllText(file_path);
+
+    player = JsonUtility.FromJson<Player>(data);
+    Debug.Log("Data loaded!");
+}</xmp>
+<hr>
+</body>
+</html>
