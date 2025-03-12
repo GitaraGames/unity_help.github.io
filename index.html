@@ -62,5 +62,34 @@ public class Player
         Application.Quit();
     }</xmp>
 <hr>
+    <h1>Генерация ресурсов</h1>
+    <xmp class="code">for (int x = 0; x < width; x++)
+{
+    for (int y = 0; y < height; y++)
+    {
+        float xCoord = (float)x / width * scale;
+        float yCoord = (float)y / height * scale;
+        float sample = Mathf.PerlinNoise(xCoord, yCoord);
+
+        GameObject prefabToInstantiate;
+
+        // Определяем тип ресурса по значению шума
+        if (sample < 0.5f)
+        {
+            //Hello
+        }
+        else if (sample < 0.66f)
+        {
+            prefabToInstantiate = stonePrefab; // Камень
+            Instantiate(prefabToInstantiate, new Vector3(x, 0, y), Quaternion.identity);
+        }
+        else
+        {
+            prefabToInstantiate = forestPrefab; // Лес
+            Instantiate(prefabToInstantiate, new Vector3(x, 0, y), Quaternion.identity);
+        }
+    }
+}</xmp>
+<hr>
 </body>
 </html>
