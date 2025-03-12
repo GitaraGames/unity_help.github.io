@@ -53,5 +53,14 @@ public class Player
     Debug.Log("Data loaded!");
 }</xmp>
 <hr>
+    <h1>Выход из режима игры в редакторе</h1>
+    <xmp class="code">public void QuitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }</xmp>
+<hr>
 </body>
 </html>
