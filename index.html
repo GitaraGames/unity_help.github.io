@@ -99,5 +99,16 @@ public class Player
 <xmp class="code">Dropdown.value = "1920:1080";</xmp>
 <xmp class="code">Dropdown.index = 1;</xmp>
 <hr>
+
+<h1>Колесико мыши</h1>
+<xmp class="code">void Update() {
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollInput != 0.0f) {
+            float desiredZoom = camera.fieldOfView - scrollInput * zoomSpeed;
+            camera.fieldOfView = Mathf.Clamp(desiredZoom, minZoom, maxZoom);
+        }
+    }</xmp>
+<hr>
+
 </body>
 </html>
