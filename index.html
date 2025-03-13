@@ -109,6 +109,30 @@ public class Player
         }
     }</xmp>
 <hr>
+<h1>Квадратное выделение</h1>
+<xmp class="code">void FindObjectsInSquare()
+    {
+        // Определяем границы квадрата
+        float minX = Mathf.Min(corner1.x, corner2.x);
+        float maxX = Mathf.Max(corner1.x, corner2.x);
+        float minY = Mathf.Min(corner1.y, corner2.y);
+        float maxY = Mathf.Max(corner1.y, corner2.y);
+        
+        // Находим все объекты с указанным тегом
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tagToFind);
+        
+        foreach (GameObject obj in objectsWithTag)
+        {
+            // Проверяем, находится ли объект внутри квадрата
+            if (obj.transform.position.x >= minX && obj.transform.position.x <= maxX &&
+                obj.transform.position.y >= minY && obj.transform.position.y <= maxY)
+            {
+                Debug.Log("Найден объект: " + obj.name);
+            }
+        }
+    }</xmp>
+<hr>
+
 
 </body>
 </html>
